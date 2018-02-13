@@ -1,0 +1,27 @@
+{
+  "name": "ptcg-api",
+  "version": "1.0.1",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "license": "MIT",
+  "scripts": {
+    "postinstall": "tsc",
+    "lint": "tslint {src/**/*.ts,src/*.ts}",
+    "build": "npm run lint && npm run test && tsc",
+    "test": "nyc -e \".ts\" -x \"src/**/*.spec.ts\" jasmine-ts \"src/**/*.spec.ts\"",
+    "coverage": "npm test && nyc report -r html"
+  },
+  "dependencies": {
+    "@types/superagent": "^3.5.7",
+    "superagent": "^3.8.2",
+    "typescript": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^2.8.2",
+    "@types/node": "^8.0.53",
+    "jasmine-ts": "^0.2.1",
+    "nyc": "^11.4.1",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.8.0"
+  }
+}
