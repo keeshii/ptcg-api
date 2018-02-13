@@ -1,5 +1,7 @@
 # Pokémon TCG SDK
 
+[![Build Status](https://travis-ci.org/keeshii/ptcg-api.svg?branch=master)](https://travis-ci.org/keeshii/ptcg-api.svg?branch=master)
+
 This is the Pokémon TCG SDK TypeScript implementation. It is a wrapper around the Pokémon TCG API of [pokemontcg.io](http://pokemontcg.io/).
 
 ## Installation
