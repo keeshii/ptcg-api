@@ -4,6 +4,7 @@ describe('ptcg-api', () => {
 
     it('Should define API V1', () => {
         expect(ptcg.v1).toBeDefined();
+        expect(ptcg.config).toBeDefined();
     });
 
 });
