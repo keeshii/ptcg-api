@@ -14,7 +14,7 @@ describe('cards', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/cards', {page: 4});
         response
-            .then(cards => expect(cards).toEqual([]))
+            .then(res => expect(res.cards).toEqual([]))
             .then(done);
     });
 
@@ -28,7 +28,7 @@ describe('cards', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/cards', {});
         response
-            .then(cards => expect(cards).toEqual([]))
+            .then(res => expect(res.cards).toEqual([]))
             .then(done);
     });
 
@@ -42,7 +42,7 @@ describe('cards', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/cards/card-id');
         response
-            .then(card => expect(card).toEqual(<Card>{}))
+            .then(res => expect(res.card).toEqual(<Card>{}))
             .then(done);
     });
 
@@ -56,7 +56,7 @@ describe('cards', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/cards', {});
         response
-            .then(card => expect(card).toEqual([]))
+            .then(res => expect(res.cards).toEqual([]))
             .then(done);
     });
 
@@ -70,7 +70,7 @@ describe('cards', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/cards', {page: 4});
         response
-            .then(card => expect(card).toEqual([]))
+            .then(res => expect(res.cards).toEqual([]))
             .then(done);
     });
 

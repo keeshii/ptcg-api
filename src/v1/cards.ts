@@ -1,4 +1,4 @@
-import {Query, get} from './request';
+import {Query, Response, get, parseHeaders} from './request';
 import {Card} from './model/card';
 
 export interface CardQuery extends Query {
@@ -30,20 +30,30 @@ export interface CardQuery extends Query {
     contains?: string;
 }
 
+export interface CardsResponse extends Response {
+    cards: Card[];
+}
+
+export interface CardResponse extends Response {
+    card: Card;
+}
+
 export let cards = {
-    where: (query: CardQuery = {}): Promise<Card[]> => {
-        return get('/cards', query).then(res => {
-            const cards = <Card[]>(res.body as any).cards;
-            return cards;
-        });
+    where: (query: CardQuery = {}): Promise<CardsResponse> => {
+        return get('/cards', query).then(res =>
+            <CardsResponse>Object.assign(parseHeaders(res), {
+                cards: res.body.cards
+            })
+        );
     },
-    find: (id: string): Promise<Card> => {
-        return get('/cards/' + id).then(res => {
-            const cards = <Card>(res.body as any).card;
-            return cards;
-        });
+    find: (id: string): Promise<CardResponse> => {
+        return get('/cards/' + id).then(res =>
+            <CardResponse>Object.assign(parseHeaders(res), {
+                card: res.body.card
+            })
+        );
     },
-    all: (query: Query = {}): Promise<Card[]> => {
+    all: (query: Query = {}): Promise<CardsResponse> => {
         return cards.where(query);
     }
 };

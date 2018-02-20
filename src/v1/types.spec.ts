@@ -13,7 +13,7 @@ describe('types', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/types');
         response
-            .then(types => expect(types).toEqual(['Fire', 'Water']))
+            .then(res => expect(res.types).toEqual(['Fire', 'Water']))
             .then(done);
     });
 
@@ -27,7 +27,7 @@ describe('types', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/subtypes');
         response
-            .then(types => expect(types).toEqual(['Basic', 'Stage 1']))
+            .then(res => expect(res.subtypes).toEqual(['Basic', 'Stage 1']))
             .then(done);
     });
 
@@ -41,7 +41,7 @@ describe('types', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/supertypes');
         response
-            .then(types => expect(types).toEqual(['Pokémon', 'Trainer']))
+            .then(res => expect(res.supertypes).toEqual(['Pokémon', 'Trainer']))
             .then(done);
     });
 

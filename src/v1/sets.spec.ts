@@ -14,7 +14,7 @@ describe('sets', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/sets', {page: 4});
         response
-            .then(cards => expect(cards).toEqual([]))
+            .then(res => expect(res.sets).toEqual([]))
             .then(done);
     });
 
@@ -28,7 +28,7 @@ describe('sets', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/sets', {});
         response
-            .then(cards => expect(cards).toEqual([]))
+            .then(res => expect(res.sets).toEqual([]))
             .then(done);
     });
 
@@ -42,7 +42,7 @@ describe('sets', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/sets/set-id');
         response
-            .then(card => expect(card).toEqual(<Set>{}))
+            .then(res => expect(res.set).toEqual(<Set>{}))
             .then(done);
     });
 
@@ -56,7 +56,7 @@ describe('sets', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/sets', {});
         response
-            .then(card => expect(card).toEqual([]))
+            .then(res => expect(res.sets).toEqual([]))
             .then(done);
     });
 
@@ -70,7 +70,7 @@ describe('sets', () => {
         // then
         expect(request.get).toHaveBeenCalledWith('/sets', {page: 4});
         response
-            .then(card => expect(card).toEqual([]))
+            .then(res => expect(res.sets).toEqual([]))
             .then(done);
     });
 

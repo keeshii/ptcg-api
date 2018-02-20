@@ -14,8 +14,8 @@ This is the Pokémon TCG SDK TypeScript implementation. It is a wrapper around t
 
     import {v1 as ptcg} from 'ptcg-api';
 
-    ptcg.cards.find('base1-4').then(card => {
-        console.log(card.name); // "Charizard"
+    ptcg.cards.find('base1-4').then(res => {
+        console.log(res.card.name); // "Charizard"
     });
 
 #### Filter Cards via query parameters
@@ -23,8 +23,8 @@ This is the Pokémon TCG SDK TypeScript implementation. It is a wrapper around t
     ptcg.cards.where({
         set: 'generations',
         supertype: 'pokemon'
-    }).then(cards => {
-        cards.forEach(card => console.log(card.name));
+    }).then(res => {
+        res.cards.forEach(card => console.log(card.name));
     });
 
 #### Find all Cards
@@ -36,8 +36,12 @@ This is the Pokémon TCG SDK TypeScript implementation. It is a wrapper around t
     ptcg.cards.all({
         page: 5,
         pageSize: 100
+    }).then(res => {
+        console.log(res.pageSize);  // size of page
+        console.log(res.count);     // number of returned elements
+        console.log(res.totalCount); // number of all elements
     });
-    
+
 #### Find a Set by set code
 
     ptcg.sets.find('base1');

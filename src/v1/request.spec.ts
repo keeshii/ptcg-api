@@ -1,16 +1,16 @@
 import * as superagent from 'superagent';
 import {config} from '../config';
-import {get} from './request';
+import {get, parseHeaders} from './request';
 
 describe('request', () => {
 
-    let sendMock: any;
+    let queryMock: any;
     let catchMock: any;
 
     beforeEach(() => {
         catchMock = {catch: () => {}};
-        sendMock = {send: () => catchMock};
-        spyOn(superagent, 'get').and.returnValue(sendMock);
+        queryMock = {query: () => catchMock};
+        spyOn(superagent, 'get').and.returnValue(queryMock);
     });
 
     it('Should call valid URL', () => {
@@ -20,13 +20,13 @@ describe('request', () => {
         expect(superagent.get).toHaveBeenCalledWith(config.API_URL + '/v1/cards');
     });
 
-    it('Should send valid params', () => {
+    it('Should query valid params', () => {
         // given
-        spyOn(sendMock, 'send').and.callThrough();
+        spyOn(queryMock, 'query').and.callThrough();
         // when
         get('/cards', {page: 4});
         // then
-        expect(sendMock.send).toHaveBeenCalledWith({page: 4});
+        expect(queryMock.query).toHaveBeenCalledWith({page: 4});
     });
 
     it('Should be able to throw an error', () => {
@@ -37,6 +37,24 @@ describe('request', () => {
         }));
         // then
         expect(() => get('/cards')).toThrowError('error message');
+    });
+
+    it('Should parse headers', () => {
+        // given
+        const res = {header: {'total-count': '10'}};
+        // when
+        const result = parseHeaders(res as superagent.Response);
+        // then
+        expect(result.totalCount).toEqual(10);
+    });
+
+    it('Should parse headers with default values', () => {
+        // given
+        const res = {};
+        // when
+        const result = parseHeaders(res as superagent.Response);
+        // then
+        expect(result.totalCount).toEqual(NaN);
     });
 
 });
