@@ -1,3 +1,3 @@
 export let config = {
-    API_URL: 'https://api.pokemontcg.io'
+    API_URL_V1: 'https://api.pokemontcg.io/v1'
 };

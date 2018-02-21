@@ -17,7 +17,7 @@ describe('request', () => {
         // when
         get('/cards');
         // then
-        expect(superagent.get).toHaveBeenCalledWith(config.API_URL + '/v1/cards');
+        expect(superagent.get).toHaveBeenCalledWith(config.API_URL_V1 + '/cards');
     });
 
     it('Should query valid params', () => {

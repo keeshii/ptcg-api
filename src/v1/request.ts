@@ -27,7 +27,7 @@ export function parseHeaders(res: superagent.Response): Response {
 
 export function get(uri: string, query: Query = {}): Promise<superagent.Response> {
     return superagent
-        .get(config.API_URL + '/v1' + uri)
+        .get(config.API_URL_V1 + uri)
         .query(query)
         .catch(err => {
             throw new Error(err.message);

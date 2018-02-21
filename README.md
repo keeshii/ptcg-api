@@ -65,3 +65,8 @@ This is the Pokémon TCG SDK TypeScript implementation. It is a wrapper around t
 #### Get all Supertypes
 
     ptcg.supertypes.all();
+
+#### Change API url
+
+    import {config} from 'ptcg-api';
+    config.API_URL_V1 = 'https://new-api-url.com/v1';
