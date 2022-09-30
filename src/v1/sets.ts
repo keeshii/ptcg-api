@@ -12,25 +12,33 @@ export interface SetQuery extends Query {
 }
 
 export interface SetsResponse extends Response {
-    sets: Set[];
+    data: Set[];
+    count: number;
+    page: number;
+    pageSize: number;
+    totalCount: number;
 }
 
 export interface SetResponse extends Response {
-    set: Set;
+    data: Set;
 }
 
 export let sets = {
     where: (query: SetQuery = {}): Promise<SetsResponse> => {
         return get('/sets', query).then(res =>
             <SetsResponse>Object.assign(parseHeaders(res), {
-                sets: res.body.sets
+                data: res.body.data,
+                count: res.body.count,
+                page: res.body.page,
+                pageSize: res.body.pageSize,
+                totalCount: res.body.totalCount
             })
         );
     },
     find: (id: string): Promise<SetResponse> => {
         return get('/sets/' + id).then(res =>
             <SetResponse>Object.assign(parseHeaders(res), {
-                set: res.body.set
+                data: res.body.data
             })
         );
     },

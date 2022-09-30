@@ -9,7 +9,6 @@
     "url": "https://github.com/keeshii/ptcg-api.git"
   },
   "scripts": {
-    "postinstall": "tsc",
     "lint": "tslint {src/**/*.ts,src/*.ts}",
     "build": "npm run lint && npm run test && tsc",
     "test": "nyc -e \".ts\" -x \"src/**/*.spec.ts\" jasmine-ts \"src/**/*.spec.ts\"",
